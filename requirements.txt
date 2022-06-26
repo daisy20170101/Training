@@ -1,0 +1,4 @@
+panel==0.11.3
+jupyterlab==3.0.16
+ipywidgets==7.6.3
+
