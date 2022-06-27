@@ -6,27 +6,28 @@ RUN apt-get update \
     gfortran \
     git \
     libopenmpi-dev \
-    libgomp1 \
-    libopenmpi3 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /home/tools
 
-RUN git clone https://github.com/daisy20170101/TriBIE.git \
+RUN git clone -b SEAS_BP3_QD https://github.com/daisy20170101/TriBIE.git \
     && cd TriBIE/src \
-    && mpif90 phy3d_module_non.f90 3dtriBIE_v1.f90 -o tribie
+    && mpif90 phy3d_module_non.f90 3dtriBIE_v1.f90 -o tribie \
+    && cd ../TriGreen \
+    && mpif90 sub_comdun.f mod_dtrigreen.f90 m_calc_green.f90 calc_BP3.f90 -o calc_stiffness -g
+
 
 FROM debian:bullseye-slim
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     libgomp1 \
-    libopenmpi3 \
     libopenmpi-dev \
     openmpi-bin \
     python3 \
     python3-pip \
     python3-numpy \
+    python3-matplotlib \
     python3-setuptools \
     libxrender1 \
     xvfb \
