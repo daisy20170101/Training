@@ -25,6 +25,10 @@ case "$1" in
         set -- tribie "${@:2}"
         exec "$@"
     ;;
+    calc_stiffness)
+        set -- calc_stiffness "${@:2}"
+        exec "$@"
+    ;;
     *)
         echo "Unknown command: $1"
     ;;

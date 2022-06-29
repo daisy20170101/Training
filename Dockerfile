@@ -8,13 +8,17 @@ RUN apt-get update \
     libopenmpi-dev \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /home/tools
+RUN mkdir -p /home/tools \
+    && mkdir /home/tools/bin
 
+WORKDIR /tmp
 RUN git clone -b SEAS_BP3_QD https://github.com/daisy20170101/TriBIE.git \
     && cd TriBIE/src \
-    && mpif90 phy3d_module_non.f90 3dtriBIE_v1.f90 -o tribie \
+    && mpif90 phy3d_module_non.f90 3dtri_BP3.f90 -o tribie \
+    && cp tribie *.mod /home/tools/bin \
     && cd ../TriGreen \
-    && mpif90 sub_comdun.f mod_dtrigreen.f90 m_calc_green.f90 calc_BP3.f90 -o calc_stiffness -g
+    && mpif90 sub_comdun.f mod_dtrigreen.f90 m_calc_green.f90 calc_BP3.f90 -o calc_stiffness -g \
+    && cp calc_stiffness *.mod  /home/tools/bin
 
 
 FROM debian:bullseye-slim
