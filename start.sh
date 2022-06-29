@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run -p 53155:53155 dli/tribie-training
+docker run -p 8890:8890 daisy20170101/tribie-training
