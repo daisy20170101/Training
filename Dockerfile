@@ -15,10 +15,10 @@ WORKDIR /tmp
 RUN git clone -b SEAS_BP3_QD https://github.com/daisy20170101/TriBIE.git \
     && cd TriBIE/src \
     && mpif90 phy3d_module_non.f90 3dtri_BP3.f90 -o tribie \
-    && cp tribie *.mod /home/tools/bin \
+    && cp tribie *.mod /home/tools/bin/ \
     && cd ../TriGreen \
     && mpif90 sub_comdun.f mod_dtrigreen.f90 m_calc_green.f90 calc_BP3.f90 -o calc_stiffness -g \
-    && cp calc_stiffness *.mod  /home/tools/bin
+    && cp calc_stiffness *.mod  /home/tools/bin/
 
 
 FROM debian:bullseye-slim
@@ -55,3 +55,4 @@ COPY SEAS-BP3/ SEAS-BP3/
 VOLUME ["/shared"]
 WORKDIR /shared
 ENTRYPOINT ["tini", "-g", "/entrypoint.sh", "--"]
+
