@@ -9,7 +9,7 @@ Please install Docker (https://www.docker.com/get-started/), launch the Docker D
 # Training
 After installation, run
 
-``docker run -p 53155:53155 daisy20170101/tribie-training``
+``docker run -p 8890:8890 daisy20170101/tribie-training``
 
 After some time you should see
 
