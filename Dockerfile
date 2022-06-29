@@ -10,7 +10,7 @@ RUN apt-get update \
 
 RUN mkdir -p /home/tools \
     && mkdir /home/tools/bin \
-    && mkdir /home/tools/bin/dump6
+    && mkdir /home/tools/bin/dump9
 
 WORKDIR /tmp
 RUN git clone -b SEAS_BP3_QD https://github.com/daisy20170101/TriBIE.git \
